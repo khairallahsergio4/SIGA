@@ -45,6 +45,10 @@ th, td {
     text-align: right;
 }
 
+.alumno-baja {
+    color: red;
+}
+
 </style>
 
 <x-membrete ciclo="{{$ciclo->ciclo}}" lema="{{$ciclo->lema}}" nombre="{{$establecimiento->nombre}}" cue="{{$establecimiento->cue}}" nivel="{{$establecimiento->nivel}}" direccion="{{$establecimiento->direccion}}"/>
@@ -102,7 +106,7 @@ th, td {
         <tbody>
             @forelse ($alumnos as $alumno) 
 
-            <tr>
+            <tr class="{{ $alumno->baja !== null ? 'alumno-baja' : '' }}">
                 <td>
                     @if ($loop->iteration)
                         {{$loop->iteration}}
@@ -186,7 +190,7 @@ th, td {
                 </td>
 
                 <td>
-                    {{$alumno->baja}}
+                    {{$alumno->baja . " " . $alumno->fecha_baja}}
                 </td>
 
                 <td>

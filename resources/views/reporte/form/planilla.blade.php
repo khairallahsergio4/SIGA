@@ -44,6 +44,10 @@ table{
     text-align: center;
 }
 
+.alumno-baja{
+    color:red;
+}
+
 
 
 
@@ -135,7 +139,7 @@ table{
 
         <tbody>
             @forelse ($alumnos as $alumno) 
-            <tr>
+            <tr class="{{ $alumno->baja !== null ? 'alumno-baja' : '' }}">
             
                 <td class="td" style="text-align: center;">
                     @if ($loop->iteration)

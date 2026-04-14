@@ -61,7 +61,7 @@ class ReporteController extends Controller
         if($request->reporte==1){
             $alumnos =DB::table('inscripcions')
             ->join('asignar_divisions', 'inscripcions.id', '=', 'asignar_divisions.inscripcion_id')->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')->join('tutors','inscripcions.tutor_id','=','tutors.id')->join('parentezcos','inscripcions.parentezco_id','=','parentezcos.id')->orderBy('alumnos.sexo','ASC')
-           ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->where('baja',null)->get();
+           ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->get();
     
           //Generando PDF
            $pdf= PDF::loadView('reporte.form.listadodatos',compact('alumnos','ciclo','curso','establecimiento'))->setPaper('A3', 'landscape')->setWarnings(false)->save('myfile.pdf');
@@ -76,7 +76,7 @@ class ReporteController extends Controller
             if($request->planilla==1){
                 $alumnos =DB::table('inscripcions')
                 ->join('asignar_divisions', 'inscripcions.id', '=', 'asignar_divisions.inscripcion_id')->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')->orderBy('alumnos.sexo','ASC')
-               ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->where('alumnos.baja','=',null)->get();
+               ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->get();
 
             }
 
@@ -85,7 +85,7 @@ class ReporteController extends Controller
              
                 $alumnos =DB::table('inscripcions')
                 ->join('asignar_divisions', 'inscripcions.id', '=', 'asignar_divisions.inscripcion_id')->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')->where('alumnos.sexo','!=','M')
-               ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->where('alumnos.baja','=',null)->get();
+               ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->get();
             }
 
 
@@ -94,7 +94,7 @@ class ReporteController extends Controller
              
                 $alumnos =DB::table('inscripcions')
                 ->join('asignar_divisions', 'inscripcions.id', '=', 'asignar_divisions.inscripcion_id')->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')->where('alumnos.sexo','M')
-               ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->where('alumnos.baja','=',null)->get();
+               ->orderBy('alumnos.apellidos', 'ASC')->where('asignar_divisions.ciclo_id',$request->ciclo)->where('grupo_id',$request->curso)->get();
             }
 
             //Descargando la planilla en PDF
