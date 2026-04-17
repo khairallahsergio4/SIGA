@@ -27,8 +27,8 @@
             <th scope="col">CUIL</th>
             <th scope="col">Sexo</th>
             <th scope="col">Nacimiento</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">Curso</th>
+            <th scope="col">Ciclo</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -74,16 +74,24 @@
                     {{$newDate = date("d-m-Y", strtotime($alumno->fnacimiento))}}
                 </td>
 
+                <td>
+                    
+                </td>
+
+                <td>
+                    
+                </td>
+
             <x-boton-imprimir href="{{route('alumno.print',$alumno->id)}}"/>
 
             <x-opcion-editar href="{{route('alumno.edit',$alumno->id)}}"/>
 
-            <x-opcion-eliminar href="{{route('alumno.destroy',$alumno)}}"/>
+            <x-opcion-eliminar href="{{route('alumno.destroy', $alumno->id)}}"/>
+
             
             <x-boton-baja href="{{route('alumno.show',$alumno->id)}}"/> 
           
-            <x-boton-alta href="{{route('alumno.up',$alumno)}}"/>
-         
+            <x-boton-alta href="{{route('alumno.up', $alumno->id)}}"/>         
       
     
         </tr>
