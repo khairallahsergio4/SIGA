@@ -27,8 +27,6 @@
             <th scope="col">CUIL</th>
             <th scope="col">Sexo</th>
             <th scope="col">Nacimiento</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Ciclo</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -81,6 +79,8 @@
                 <td>
                     
                 </td>
+
+           
 
             <x-boton-imprimir href="{{route('alumno.print',$alumno->id)}}"/>
 
