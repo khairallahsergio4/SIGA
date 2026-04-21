@@ -35,8 +35,8 @@
         <thead class="table-dark ">
           <tr>
             <th scope="col">Alumno</th>
-            <th scope="col">DNI Nº</th>
-            <th scope="col">Ciclo</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">DNI</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -52,12 +52,14 @@
                 </td>
 
                 <td>
-                    {{$asignacion->inscripcion->alumno->dni}}
+                    {{$asignacion->inscripcion->alumno->sexo}}
                 </td>
 
                 <td>
-                    {{$asignacion->ciclo->ciclo}}
+                    {{$asignacion->inscripcion->alumno->dni}}
                 </td>
+
+            
 
 
                 
