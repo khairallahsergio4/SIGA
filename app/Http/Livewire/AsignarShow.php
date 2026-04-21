@@ -53,8 +53,26 @@ class AsignarShow extends Component
             Cache::put('ciclo_activo',$ciclo,14400); 
         }
 
-        //buscando los alumnos que tienen una seccion asignada
-       $asignaciones=AsignarDivision::where('grupo_id',$this->search)->where('ciclo_id',$this->año)->where('grupo_id','!=',null)->Paginate(10);
+        
+
+      // Busqueda original $asignaciones=AsignarDivision::where('grupo_id',$this->search)->where('ciclo_id',$this->año)->where('grupo_id','!=',null)->Paginate(10);
+
+      //buscando los alumnos que tienen una seccion asignada. Mejorada para que muestre por orden de apellidos
+      $asignaciones = AsignarDivision::query()
+    ->join('inscripcions', 'asignar_divisions.inscripcion_id', '=', 'inscripcions.id')
+    ->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')
+
+    ->where('asignar_divisions.grupo_id', $this->search)
+    ->where('asignar_divisions.ciclo_id', $this->año)
+    ->whereNotNull('asignar_divisions.grupo_id')
+
+    // ORDEN: primero sexo (M antes que F), luego apellido y nombre
+    ->orderByRaw("FIELD(alumnos.sexo, 'M', 'F', 'OTRO')")
+    ->orderBy('alumnos.apellidos', 'asc')
+    ->orderBy('alumnos.nombres', 'asc')
+
+    ->select('asignar_divisions.*') // importante para no romper el modelo
+    ->paginate(10);
    
         //retornando la vista
         return view('livewire.asignar-show',["cursos"=>$this->cursos,"ciclos"=>$this->ciclos,"asignaciones"=>$asignaciones]);
