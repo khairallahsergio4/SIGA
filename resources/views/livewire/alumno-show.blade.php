@@ -22,11 +22,11 @@
             <th scope="col">Legajo</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Nombres</th>
-            <th scope="col">Nac.</th>
             <th scope="col">DNI</th>
-            <th scope="col">CUIL</th>
             <th scope="col">Sexo</th>
             <th scope="col">Nacimiento</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Ciclo</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -52,17 +52,12 @@
                     {{$alumno->nombres}}
                 </td>
 
-                <td>
-                    {{$alumno->nacionalidad}}
-                </td>
 
                 <td>
                     {{$alumno->dni}}
                 </td>
 
-                <td>
-                    {{$alumno->cuil}}
-                </td>
+            
 
                 <td>
                     {{$alumno->sexo}}
@@ -72,8 +67,14 @@
                     {{$newDate = date("d-m-Y", strtotime($alumno->fnacimiento))}}
                 </td>
 
+                
                 <td>
-                    
+                    {{ $alumno->curso_division ?? 'Sin asignar' }}
+
+                </td>
+
+                <td>
+                    {{ $alumno->ciclo_lectivo ?? '-' }}
                 </td>
 
                 <td>
