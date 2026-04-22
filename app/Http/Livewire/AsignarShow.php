@@ -60,7 +60,7 @@ class AsignarShow extends Component
       //buscando los alumnos que tienen una seccion asignada. Mejorada para que muestre por orden de apellidos
       $asignaciones = AsignarDivision::query()
     ->join('inscripcions', 'asignar_divisions.inscripcion_id', '=', 'inscripcions.id')
-    ->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')
+    ->join('alumnos', 'inscripcions.alumno_id', '=', 'alumnos.id')->where('alumnos.baja',null)
 
     ->where('asignar_divisions.grupo_id', $this->search)
     ->where('asignar_divisions.ciclo_id', $this->año)
