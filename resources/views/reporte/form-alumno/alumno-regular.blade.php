@@ -19,7 +19,7 @@
 
 </div>
 
-{{-- <x-firmas/> --}}
+<x-firmas/>
 
 <div style="padding-top: 200px;padding-left:40px; ">
     <footer>

@@ -42,35 +42,37 @@
         </thead>
 
 
-        <tbody>
-            @forelse ($asignaciones as $asignacion) 
-                
-            <tr href="#Options" data-toggle="collapse">
-             
-                <td>
-                    {{$asignacion->inscripcion->alumno->apellidos . " " . $asignacion->inscripcion->alumno->nombres}}
-                </td>
+ <tbody>
+    @forelse ($asignaciones as $asignacion)
 
-                <td>
-                    {{$asignacion->inscripcion->alumno->sexo}}
-                </td>
+        <tr href="#Options"
+            data-toggle="collapse"
+            class="{{ $asignacion->inscripcion->alumno->baja !== null ? 'text-danger' : '' }}">
 
-                <td>
-                    {{$asignacion->inscripcion->alumno->dni}}
-                </td>
+            <td>
+                {{ $asignacion->inscripcion->alumno->apellidos . ' ' . $asignacion->inscripcion->alumno->nombres }}
+            </td>
 
-            
+            <td>
+                {{ $asignacion->inscripcion->alumno->sexo }}
+            </td>
 
+            <td>
+                {{ $asignacion->inscripcion->alumno->dni }}
+            </td>
 
-                
-                <x-opcion-editar href="{{route('asignardivision.edit',$asignacion)}}"/>
+            <x-opcion-editar href="{{ route('asignardivision.edit', $asignacion) }}" />
 
-            </tr>
-                
-                @empty
-                    <p class=" text-danger">No se encontraron resultados en su busqueda</p>
-            @endforelse 
-        </tbody>
+        </tr>
+
+    @empty
+        <tr>
+            <td colspan="4" class="text-danger">
+                No se encontraron resultados en su búsqueda
+            </td>
+        </tr>
+    @endforelse
+</tbody>
       </table>
 </div>
         <div class="container">
